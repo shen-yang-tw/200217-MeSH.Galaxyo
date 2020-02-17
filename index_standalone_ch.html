@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" />
+  <link rel="stylesheet" href="https://tools.ovid.com/pico/flysheet/css/styles.css">
+  <title>MeSH Galaxy</title>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-auto">
+            <img src="https://tools.ovid.com/pico/flysheet/img/logo.png" class="img-fluid" alt="Responsive image" />
+          </div>
+          <div class="col">
+            <div class="d-flex align-items-center h-100"><h1>MeSH Galaxyo</h1></div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col"><button type="button" class="btn btn-info linkout w-100 my-1" id="esLinkout"><i class="fab fa-searchengin menu-icon"></i>&nbsp;Expert Searches</button></div>
+          <div class="col"><button type="button" class="btn btn-info linkout w-100 my-1" id="caLinkout"><i class="fas fa-table menu-icon"></i>&nbsp;Citation Analyzer</button></div>
+          <div class="col"><button type="button" class="btn btn-info linkout w-100 my-1" id="pvLinkout"><i class="fas fa-pills menu-icon"></i>&nbsp;PV Tool</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:5px;">
+      <div class="card-header">
+        <p><strong>Ovid Medline PICO Helper</strong></p>
+        <p>PICO</p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">PICO</th>
+                    <th scope="col">Keyword</th>
+                    <th scope="col">MeSH Mapping</th>
+                    <th scope="col">MeSH Exploded</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><label for="p-input">P (Patient, Problem or Disease)</label> </td>
+                    <td class="pico-input"><input class="form-control form-control-sm picoText" type="text" id="p-input"></td>
+                    <td class="map-button">
+                      <div style="display:inline-block"><button type="button" class="btn btn-success map-trigger" id="p-input-button">Map Keyword(s) <span class="loadingGif"><img src="https://tools.ovid.com/pico/flysheet/img/spinner.gif" /></span></button></div>
+                      <div class="view-mesh-modal" id="p-input-view"><a href="#"><i class="fa fa-eye"></i></a></div>
+                    </td>
+                    <td class="map-radio">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="meshExplode-p" id="p-exp-y" value="yes" checked="checked">
+                        <label class="form-check-label" for="p-exp-y">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="meshExplode-p" id="p-exp-n" value="no">
+                        <label class="form-check-label" for="p-exp-n">No</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label for="i-input">I (Intervention or Issue)</label> </td>
+                    <td class="pico-input"><input class="form-control form-control-sm picoText" type="text" id="i-input"></td>
+                    <td class="map-button">
+                      <div style="display:inline-block"><button type="button" class="btn btn-success map-trigger" id="i-input-button">Map Keyword(s) <span class="loadingGif"><img src="https://tools.ovid.com/pico/flysheet/img/spinner.gif" /></span></button></div>
+                      <div class="view-mesh-modal" id="i-input-view"><a href="#"><i class="fa fa-eye"></i></a></div>
+                    </td>
+                    <td class="map-radio">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="meshExplode-i" id="i-exp-y" value="yes" checked="checked">
+                        <label class="form-check-label" for="i-exp-y">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="meshExplode-i" id="i-exp-n" value="no">
+                        <label class="form-check-label" for="i-exp-n">No</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label for="c-input">C (Comparison Intervention or Issue)</label> </td>
+                    <td class="pico-input"><input class="form-control form-control-sm picoText" type="text" id="c-input"></td>
+                    <td class="map-button">
+                      <div style="display:inline-block"><button type="button" class="btn btn-success map-trigger" id="c-input-button">Map Keyword(s) <span class="loadingGif"><img src="https://tools.ovid.com/pico/flysheet/img/spinner.gif" /></span></button></div>
+                      <div class="view-mesh-modal" id="c-input-view"><a href="#"><i class="fa fa-eye"></i></a></div>
+                    </td>
+                    <td class="map-radio">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="meshExplode-c" id="c-exp-y" value="yes" checked="checked">
+                        <label class="form-check-label" for="c-exp-y">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="meshExplode-c" id="c-exp-n" value="no">
+                        <label class="form-check-label" for="c-exp-n">No</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label for="o-input">O (Outcome)</label> </td>
+                    <td class="pico-input"><input class="form-control form-control-sm picoText" type="text" id="o-input"></td>
+                    <td class="map-button">
+                      <div style="display:inline-block"><button type="button" class="btn btn-success map-trigger" id="o-input-button">Map Keyword(s) <span class="loadingGif"><img src="https://tools.ovid.com/pico/flysheet/img/spinner.gif" /></span></button></div>
+                      <div class="view-mesh-modal" id="o-input-view"><a href="#"><i class="fa fa-eye"></i></a></div>
+                    </td>
+                    <td class="map-radio">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="meshExplode-o" id="o-exp-y" value="yes" checked="checked">
+                        <label class="form-check-label" for="p-exp-y">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="meshExplode-o" id="o-exp-n" value="no">
+                        <label class="form-check-label" for="o-exp-n">No</label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-auto">
+            <h6>Patient Information</h6>
+            <div class="btn-group" id="filterGroup">
+              <div class="btn-group" id="filterGroup">
+                <div class="dropdown cq-dropdown dropdownCheckboxes" data-name="filterWrapper">
+                  <button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Age Group:</button>
+                  <ul class="dropdown-menu" aria-labelledby="contentType">
+                    <li><label class="radio-btn"><input type="checkbox" value="All Infant (birth to 23 months)">All Infant (birth to 23 months)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="All Child (0 to 18 years)">All Child (0 to 18 years)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="All Adult (19 plus years)">All Adult (19 plus years)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Newborn Infant (birth to 1 month)">Newborn Infant (birth to 1 month)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Infant (1 to 23 months)">Infant (1 to 23 months)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Preschool Child (2 to 5 years)">Preschool Child (2 to 5 years)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Child (6 to 12 years)">Child (6 to 12 years)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Adolescent (13 to 18 years)">Adolescent (13 to 18 years)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Young Adult (19 to 24 years)">Young Adult (19 to 24 years)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Adult (19 to 44 years)">Adult (19 to 44 years)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Young Adult and Adult (19-24 and 19-44)">Young Adult and Adult (19-24 and 19-44)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Middle Age (45 to 64 years)">Middle Age (45 to 64 years)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Middle Aged (45 plus years)">Middle Aged (45 plus years)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="All Aged (65 and Over)">All Aged (65 and Over)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="Aged (80 and Over)">Aged (80 and Over)</label></li>
+                    <li class="text-center"><button type="button" class="btn btn-xs btn-default save" id="langSave" value="Save">Save</button></li>
+                  </ul>
+                  <input type="hidden" class="hidden-input limitString" name="ageString" id="ageString" value="noLimit">
+                </div>
+              </div>
+            </div>
+            <div class="form-group" style="margin-top:20px;">
+              <h6>Gender: </h6>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="gender-both" value="both" checked="checked">
+                <label class="form-check-label" for="c-exp-y">Both</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input genderChecktag" type="radio" name="gender" id="gender-m" value="male">
+                <label class="form-check-label" for="gender-m">Male</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input genderChecktag" type="radio" name="gender" id="gender-f" value="female">
+                <label class="form-check-label" for="gender-f">Female</label>
+              </div>
+            </div>
+            <div class="form-group" style="margin-top:20px;">
+              <h6>Special populations: </h6>
+              <div class="form-check">
+                <input class="form-check-input specialLimits" type="checkbox" value="children" id="children">
+                <label class="form-check-label" for="children">
+                  Children
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input specialLimits" type="checkbox" value="elderly" id="elderly">
+                <label class="form-check-label" for="elderly">
+                  Elderly
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input specialLimits" type="checkbox" value="pregnancy - wide" id="pregnancy">
+                <label class="form-check-label" for="pregnancy - wide">
+                  Pregnancy
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-xl-5">
+            <div class="form-group">
+              <h6>Search Options f:</h6>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchOptions" id="so-both" value="both" checked="checked">
+                <label class="form-check-label" for="so-both">Keywords + MeSH</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchOptions" id="so-mp" value="keywords">
+                <label class="form-check-label" for="so-mp">Keywords</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchOptions" id="so-mesh" value="mesh">
+                <label class="form-check-label" for="so-mesh">MeSH</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+
+            <h6>Limits:</h6>
+            <div class="row">
+              <div class="btn-group" id="filterGroup">
+                <div class="dropdown cq-dropdown dropdownCheckboxes limitsDropdown" data-name="filterWrapper">
+                  <button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Clinical Queries:</button>
+                  <ul class="dropdown-menu" aria-labelledby="contentType">
+                    <li><label class="radio-btn"><input type="checkbox" value="reviews (maximizes sensitivity)">Reviews (maximizes sensitivity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="reviews (maximizes specificity)">Reviews (maximizes specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="reviews (best balance of sensitivity and specificity)">Reviews (best balance of sensitivity and specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="therapy (maximizes sensitivity)">Therapy (maximizes sensitivity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="therapy (maximizes specificity)">Therapy (maximizes specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="therapy (best balance of sensitivity and specificity)">Therapy (best balance of sensitivity and specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="diagnosis (maximizes sensitivity)">Diagnosis (maximizes sensitivity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="diagnosis (maximizes specificity)">Diagnosis (maximizes specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="diagnosis (best balance of sensitivity and specificity)">Diagnosis (best balance of sensitivity and specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="prognosis  (maximizes sensitivity)">Prognosis (maximizes sensitivity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="prognosis (maximizes specificity)">Prognosis (maximizes specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="prognosis (best balance of sensitivity and specificity)">Prognosis (best balance of sensitivity and specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="causation-etiology (maximizes sensitivity)">Causation-Etiology (maximizes sensitivity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="causation-etiology (maximizes specificity)">Causation-Etiology (maximizes specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="causation-etiology (best balance of sensitivity and specificity)">Causation-Etiology (best balance of sensitivity and specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="economics (maximizes sensitivity)">Economics (maximizes sensitivity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="economics (maximizes specificity)">Economics (maximizes specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="economics (best balance of sensitivity and specificity)">Economics (best balance of sensitivity and specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="clinical prediction guides (maximizes sensitivity)">Clinical Prediction Guides (maximizes sensitivity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="clinical prediction guides (maximizes specificity)">Clinical Prediction Guides (maximizes specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="clinical prediction guides (best balance of sensitivity and specificity)">Clinical Prediction Guides (best balance of sensitivity and specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="qualitative (maximizes sensitivity)">Qualitative (maximizes sensitivity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="qualitative (maximizes specificity)">Qualitative (maximizes specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="qualitative (best balance of sensitivity and specificity)">Qualitative (best balance of sensitivity and specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="costs (maximizes sensitivity)">Costs (maximizes sensitivity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="costs (maximizes specificity)">Costs (maximizes specificity)</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="costs (best balance of sensitivity and specificity)">Costs (best balance of sensitivity and specificity)</label></li>
+                    <li class="text-center"><button type="button" class="btn btn-xs btn-default save" id="langSave" value="Save">Save</button></li>
+                  </ul>
+                  <input type="hidden" class="hidden-input limitString" name="cqString" id="cqString" value="noLimit">
+                </div>
+              </div>
+              <div class="btn-group" id="filterGroup">
+                <div class="dropdown cq-dropdown dropdownCheckboxes limitsDropdown" data-name="filterWrapper">
+                  <button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Publication Types:</button>
+                  <ul class="dropdown-menu" aria-labelledby="contentType">
+                    <li><label class="radio-btn"><input type="checkbox" value="meta analysis">Meta Analysis</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="randomized controlled trial">Randomized Controlled Trial</label></li>
+                    <li><label class="radio-btn"><input type="checkbox" value="systematic reviews">Systematic Reviews</label></li>
+                    <li class="text-center"><button type="button" class="btn btn-xs btn-default save" id="langSave" value="Save">Save</button></li>
+                  </ul>
+                  <input type="hidden" class="hidden-input limitString" name="ptString" id="ptString" value="noLimit">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="dropdown cq-dropdown dropdownCheckboxes limitsDropdown" data-name="filterWrapper">
+                <button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Filters:</button>
+                <ul class="dropdown-menu" aria-labelledby="contentType">
+                  <li><label class="radio-btn"><input type="checkbox" class="filters" value="diagnosis">Diagnosis</label></li>
+                  <li><label class="radio-btn"><input type="checkbox" class="filters" value="rct">Randomised Controlled Trials</label></li>
+                  <li><label class="radio-btn"><input type="checkbox" class="filters" value="diagnosicStudies">Diagnostic Studies</label></li>
+                  <li class="text-center"><button type="button" class="btn btn-xs btn-default save" id="langSave" value="Save">Save</button></li>
+                </ul>
+                <input type="hidden" class="hidden-input" name="filterString" id="filterString" value="noLimit">
+              </div>
+              <div class="dropdown cq-dropdown dropdownCheckboxes limitsDropdown" data-name="filterWrapper">
+                <button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Language:</button>
+                <ul class="dropdown-menu" aria-labelledby="contentType">
+                  <li><label class="radio-btn"><input type="checkbox" value="chinese">Chinese</label></li>
+                  <li><label class="radio-btn"><input type="checkbox" value="english">English</label></li>
+                  <li class="text-center"><button type="button" class="btn btn-xs btn-default save" id="langSave" value="Save">Save</button></li>
+                </ul>
+                <input type="hidden" class="hidden-input limitString" name="languageString" id="languageString" value="noLimit">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3 align-middle text-center">
+            <p><button type="button" class="btn btn-success btn-lg launchSearch w-100" id="launchSearchOvid">Launch Search in Ovid</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="searchResponse"></div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+  <script src="https://tools.ovid.com/pico/flysheet/scripts/dropdownList.js"></script>
+  <script src="https://tools.ovid.com/pico/flysheet/scripts/scripts_standalone.js"></script>
+
+  <div class="modal fade" id="p-input-modal" tabindex="-1" role="dialog" aria-labelledby="p-input-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="p-input-modal-label">Patient, Problem MeSH Mapping</h5>
+          <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="p-input-subheading"></div>
+          <div id="p-input-ajaxreturn" data-id="p" class="ajax-wrapper"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="i-input-modal" tabindex="-1" role="dialog" aria-labelledby="i-input-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="i-input-modal-label">Intervention MeSH Mapping</h5>
+          <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="i-input-subheading"></div>
+          <div id="i-input-ajaxreturn" data-id="i" class="ajax-wrapper"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="c-input-modal" tabindex="-1" role="dialog" aria-labelledby="c-input-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="c-input-modal-label">Comparison MeSH Mapping</h5>
+          <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="c-input-subheading"></div>
+          <div id="c-input-ajaxreturn" data-id="c" class="ajax-wrapper"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="o-input-modal" tabindex="-1" role="dialog" aria-labelledby="o-input-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="o-input-modal-label">Outcome MeSH Mapping</h5>
+          <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="o-input-subheading"></div>
+          <div id="o-input-ajaxreturn"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add Ovid UserID as value: -->
+  <input type="hidden" id="userid" name="userid" value="" />
+
+  <!-- Add Ovid Password as value: -->
+  <input type="hidden" id="pwd" name="pwd" value="" />
+</body>
+
+</html>
