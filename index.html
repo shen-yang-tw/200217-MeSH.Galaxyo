@@ -1,9 +1,9 @@
-<!doctype html>
-<html lang="en">
+﻿<!doctype html>
+<html lang="zh-Hant">
 
 <head>
   <!-- Required meta tags -->
-  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
@@ -25,7 +25,9 @@
             <img src="https://tools.ovid.com/pico/flysheet/img/logo.png" class="img-fluid" alt="Responsive image" />
           </div>
           <div class="col">
-            <div class="d-flex align-items-center h-100"><h1>MeSH Galaxyo</h1></div>
+            <div class="d-flex align-items-center h-100">
+              <h1>PICO實證快速檢索工具</h1>
+            </div>
           </div>
         </div>
       </div>
@@ -39,8 +41,8 @@
     </div>
     <div class="card" style="margin-top:5px;">
       <div class="card-header">
-        <p><strong>Ovid Medline PICO Helper</strong></p>
-        <p>PICO</p>
+        <p><strong>Ovid Medline PICO Helper 查詢小幫手</strong></p>
+        <p>PICO檢索工具可以協助您快速在Ovid Medline資料庫查詢您的PICO問題。<br />請注意！這是用於協助您建立PICO問題的入門工具，並不是用於取代更嚴謹、精準的進階查詢。
       </div>
       <div class="card-body">
         <div class="row">
@@ -50,14 +52,14 @@
                 <thead>
                   <tr>
                     <th scope="col">PICO</th>
-                    <th scope="col">Keyword</th>
-                    <th scope="col">MeSH Mapping</th>
-                    <th scope="col">MeSH Exploded</th>
+                    <th scope="col">Keyword<br />(可以OR分隔)</th>
+                    <th scope="col">MeSH Mapping<br />(點擊比對MeSH)</th>
+                    <th scope="col">MeSH Exploded<br />(MeSH擴展查詢)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><label for="p-input">P (Patient, Problem or Disease)</label> </td>
+                    <td><label for="p-input">P (Patient, Problem or Disease)：<br />病患/人口/問題/疾病<br />=>病患是誰，有什麼問題</label></td>
                     <td class="pico-input"><input class="form-control form-control-sm picoText" type="text" id="p-input"></td>
                     <td class="map-button">
                       <div style="display:inline-block"><button type="button" class="btn btn-success map-trigger" id="p-input-button">Map Keyword(s) <span class="loadingGif"><img src="https://tools.ovid.com/pico/flysheet/img/spinner.gif" /></span></button></div>
@@ -75,7 +77,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><label for="i-input">I (Intervention or Issue)</label> </td>
+                    <td><label for="i-input">I (Intervention or Issue)：<br />治療方式或問題<br />=>可以做的處置，或面臨的問題</label></td>
                     <td class="pico-input"><input class="form-control form-control-sm picoText" type="text" id="i-input"></td>
                     <td class="map-button">
                       <div style="display:inline-block"><button type="button" class="btn btn-success map-trigger" id="i-input-button">Map Keyword(s) <span class="loadingGif"><img src="https://tools.ovid.com/pico/flysheet/img/spinner.gif" /></span></button></div>
@@ -93,7 +95,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><label for="c-input">C (Comparison Intervention or Issue)</label> </td>
+                    <td><label for="c-input">C (Comparison Intervention or Issue)：<br />治療或問題的對比組<br />=>與前述處置方式的比較</label></td>
                     <td class="pico-input"><input class="form-control form-control-sm picoText" type="text" id="c-input"></td>
                     <td class="map-button">
                       <div style="display:inline-block"><button type="button" class="btn btn-success map-trigger" id="c-input-button">Map Keyword(s) <span class="loadingGif"><img src="https://tools.ovid.com/pico/flysheet/img/spinner.gif" /></span></button></div>
@@ -111,7 +113,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><label for="o-input">O (Outcome)</label> </td>
+                    <td><label for="o-input">O (Outcome)：<br />預期效果<br />=>會有什麼預期結果發生</label></td>
                     <td class="pico-input"><input class="form-control form-control-sm picoText" type="text" id="o-input"></td>
                     <td class="map-button">
                       <div style="display:inline-block"><button type="button" class="btn btn-success map-trigger" id="o-input-button">Map Keyword(s) <span class="loadingGif"><img src="https://tools.ovid.com/pico/flysheet/img/spinner.gif" /></span></button></div>
@@ -133,11 +135,11 @@
             </div>
           </div>
           <div class="col-auto">
-            <h6>Patient Information</h6>
+            <h6>Patient Information<br />案例資訊</h6>
             <div class="btn-group" id="filterGroup">
               <div class="btn-group" id="filterGroup">
                 <div class="dropdown cq-dropdown dropdownCheckboxes" data-name="filterWrapper">
-                  <button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Age Group:</button>
+                  <button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Age Group 年齡層:</button>
                   <ul class="dropdown-menu" aria-labelledby="contentType">
                     <li><label class="radio-btn"><input type="checkbox" value="All Infant (birth to 23 months)">All Infant (birth to 23 months)</label></li>
                     <li><label class="radio-btn"><input type="checkbox" value="All Child (0 to 18 years)">All Child (0 to 18 years)</label></li>
@@ -161,7 +163,7 @@
               </div>
             </div>
             <div class="form-group" style="margin-top:20px;">
-              <h6>Gender: </h6>
+              <h6>Gender 性別: </h6>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="gender" id="gender-both" value="both" checked="checked">
                 <label class="form-check-label" for="c-exp-y">Both</label>
@@ -176,7 +178,7 @@
               </div>
             </div>
             <div class="form-group" style="margin-top:20px;">
-              <h6>Special populations: </h6>
+              <h6>Special populations 特定族群: </h6>
               <div class="form-check">
                 <input class="form-check-input specialLimits" type="checkbox" value="children" id="children">
                 <label class="form-check-label" for="children">
@@ -201,7 +203,7 @@
         <div class="row">
           <div class="col-lg-4 col-xl-5">
             <div class="form-group">
-              <h6>Search Options f:</h6>
+              <h6>Search Options 檢索選項: </h6>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="searchOptions" id="so-both" value="both" checked="checked">
                 <label class="form-check-label" for="so-both">Keywords + MeSH</label>
@@ -218,7 +220,7 @@
           </div>
           <div class="col-md-6 col-lg-4">
 
-            <h6>Limits:</h6>
+            <h6>Limits 篩選: </h6>
             <div class="row">
               <div class="btn-group" id="filterGroup">
                 <div class="dropdown cq-dropdown dropdownCheckboxes limitsDropdown" data-name="filterWrapper">
@@ -389,10 +391,10 @@
     </div>
   </div>
   <!-- Add Ovid UserID as value: -->
-  <input type="hidden" id="userid" name="userid" value="" />
+  <input type="hidden" id="userid" name="userid" value="fem999" />
 
   <!-- Add Ovid Password as value: -->
-  <input type="hidden" id="pwd" name="pwd" value="" />
+  <input type="hidden" id="pwd" name="pwd" value="fchhhsch" />
 </body>
 
 </html>
