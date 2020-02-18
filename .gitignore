@@ -17,4 +17,4 @@ gulpfile*
 *css.map
 *.lock
 .DS_Store
-*.git
+*.git*
